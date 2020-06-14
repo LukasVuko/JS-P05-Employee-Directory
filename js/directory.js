@@ -15,7 +15,13 @@ class Directory {
       data.map((employee) => {
         const employeeObject = new Employee(
           employee.name.first,
-          employee.name.last
+          employee.name.last,
+          employee.picture.medium,
+          employee.email,
+          employee.location.city,
+          employee.cell,
+          employee.location,
+          employee.dob.date.substring(0, 10)
         );
         employeeArray.push(employeeObject);
       });
@@ -23,9 +29,12 @@ class Directory {
     return employeeArray;
   }
 
-  generateHTML() {
-    // Create employee cards and add them to document
-    // Create employe modals and add them to document
+  generateHTML() {}
+
+  start() {
+    // Create and add HTML employee list to document.
+    // Create and add HTML employee models to document.
+    // Create and add search HTML.
   }
 
   showOrHideEmployeeCard(boolean, id) {
