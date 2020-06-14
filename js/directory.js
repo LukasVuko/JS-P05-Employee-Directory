@@ -5,13 +5,22 @@ class Directory {
   }
 
   createListOfEmployeeObjects() {
-    // Fetch response
-    // Iterate through the response, park values inside new Employee();
-    // Push 12 of these into an array
-    // return that array of employee objects into employee list
-    return fetch('https://randomuser.me/api/?results=12')
+    const employeeArray = [];
+
+    fetch('https://randomuser.me/api/?results=12')
       .then((response) => response.json())
-      .then((res) => res.results.map((employee) => employee));
+      .then((data) => appendEmployeesToList(data.results));
+
+    function appendEmployeesToList(data) {
+      data.map((employee) => {
+        const employeeObject = new Employee(
+          employee.name.first,
+          employee.name.last
+        );
+        employeeArray.push(employeeObject);
+      });
+    }
+    return employeeArray;
   }
 
   generateHTML() {
