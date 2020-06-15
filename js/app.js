@@ -1,5 +1,5 @@
 let directory = new Directory();
-// direcotry.start();
+directory.start();
 
 // document.getElementById('gallery').addEventListener('click', (e) => {
 //     if(e.target.className === 'card') {

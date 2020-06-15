@@ -29,10 +29,9 @@ class Directory {
     return employeeArray;
   }
 
-  generateHTML() {}
-
   start() {
     // Create and add HTML employee list to document.
+    this.employeeList.map((employee) => employee.addCardToDisplay());
     // Create and add HTML employee models to document.
     // Create and add search HTML.
   }
