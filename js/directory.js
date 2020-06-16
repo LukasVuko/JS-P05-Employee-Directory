@@ -24,17 +24,18 @@ class Directory {
           employee.dob.date.substring(0, 10)
         );
         employeeArray.push(employeeObject);
+        employeeObject.addCardToDisplay();
       });
     }
     return employeeArray;
   }
 
-  start() {
-    // Create and add HTML employee list to document.
-    this.employeeList.map((employee) => employee.addCardToDisplay());
-    // Create and add HTML employee models to document.
-    // Create and add search HTML.
-  }
+  //   start() {
+  //     // Create and add HTML employee list to document.
+  //     this.employeeList.map((employee) => employee.addCardToDisplay());
+  //     // Create and add HTML employee models to document.
+  //     // Create and add search HTML.
+  //   }
 
   showOrHideEmployeeCard(boolean, id) {
     if (boolean) {
