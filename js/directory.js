@@ -1,55 +1,30 @@
 class Directory {
   constructor() {
+    this.endPoint = 'https://randomuser.me/api/?results=12&nat=US';
     this.maxNumberOfEmployees = 12;
-    this.employeeList = this.createListOfEmployeeObjects();
+    this.employeeList = [];
   }
 
-  createListOfEmployeeObjects() {
-    const employeeArray = [];
-
-    fetch('https://randomuser.me/api/?results=12')
-      .then((response) => response.json())
-      .then((data) => appendEmployeesToList(data.results));
-
-    function appendEmployeesToList(data) {
-      data.map((employee) => {
-        const employeeObject = new Employee(
-          employee.name.first,
-          employee.name.last,
-          employee.picture.medium,
-          employee.email,
-          employee.location.city,
-          employee.cell,
-          employee.location,
-          employee.dob.date.substring(0, 10)
-        );
-        employeeArray.push(employeeObject);
-        employeeObject.addCardToDisplay();
-      });
-    }
-    return employeeArray;
+  async initialize() {
+    const users = await fetchUsers(this.endPoint);
+    const employeeArray = await users.results.map((employee) =>
+      this.createAndReturnEmployeeObject(employee)
+    );
+    this.employeeList = employeeArray;
+    this.employeeList.forEach((employee, i) => employee.addCardToDocument(i));
+    // Create and add search HTML.
   }
 
-  //   start() {
-  //     // Create and add HTML employee list to document.
-  //     this.employeeList.map((employee) => employee.addCardToDisplay());
-  //     // Create and add HTML employee models to document.
-  //     // Create and add search HTML.
-  //   }
-
-  showOrHideEmployeeCard(boolean, id) {
-    if (boolean) {
-      // Show employee card
-    } else {
-      // Hide employee card
-    }
-  }
-
-  showOrHideEmployeeModal(boolean, id) {
-    if (boolean) {
-      // Show employee modal
-    } else {
-      // Hide employee modal
-    }
+  createAndReturnEmployeeObject(employee) {
+    return new Employee(
+      employee.name.first,
+      employee.name.last,
+      employee.picture.medium,
+      employee.email,
+      employee.location.city,
+      employee.cell,
+      employee.location,
+      employee.dob.date.substring(0, 10)
+    );
   }
 }

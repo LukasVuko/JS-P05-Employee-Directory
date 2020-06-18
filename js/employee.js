@@ -7,8 +7,8 @@ class Employee {
     this.city = city;
     this.phone = phone;
     this.address = {
-      street: address.street.number,
-      name: address.street.name,
+      number: address.street.number,
+      streetName: address.street.name,
       state: address.state,
       postcode: address.postcode,
     };
@@ -17,9 +17,9 @@ class Employee {
     this.modalDisplay = false;
   }
 
-  addCardToDisplay() {
+  addCardToDocument(index) {
     const HTML = `
-        <div class="card">
+        <div class="card" id=${index}>
             <div class="card-img-container">
                 <img class="card-img" src="${this.img}" alt="profile picture">
             </div>
@@ -28,22 +28,27 @@ class Employee {
                   this.firstName + ' ' + this.lastName
                 }</h3>
                 <p class="card-text">${this.email}</p>
-                <p class="card-text cap">${this.city}, ${this.state}</p>
+                <p class="card-text cap">${this.city}, ${this.address.state}</p>
             </div>
-        </div>`;
+        </div>
+        `;
     document.getElementById('gallery').innerHTML += HTML;
   }
 
-  addModalToDislpay() {
-    // Create Modal and parent container
-    // Add to append below galler ID
-  }
-
-  toggleModal(boolean) {
-    if (boolean) {
-      // show Modal
-    } else {
-      // hide modal
-    }
+  addEmployeeInsideModal() {
+    const HTML = `
+            <button type="button" id="modal-close-btn" class="modal-close-btn"><strong>X</strong></button>
+            <div class="modal-info-container">
+                <img class="modal-img" src="${this.img}" alt="profile picture">
+                <h3 id="name" class="modal-name cap">${this.firstName} ${this.lastName}</h3>
+                <p class="modal-text">${this.email}</p>
+                <p class="modal-text cap">${this.city}</p>
+                <hr>
+                <p class="modal-text">${this.phone}</p>
+                <p class="modal-text">${this.address.number}, ${this.address.streetName}, ${this.city}, ${this.address.state} ${this.address.postcode}</p>
+                <p class="modal-text">Birthday: ${this.birth}</p>
+            </div>
+            `;
+    document.getElementsByClassName('modal')[0].innerHTML = HTML;
   }
 }

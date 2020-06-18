@@ -1,7 +1,11 @@
-let directory = new Directory();
+const fetchUsers = async (endPoint) => {
+  const data = await fetch(endPoint);
+  return await data.json();
+};
 
-// document.getElementById('gallery').addEventListener('click', (e) => {
-//     if(e.target.className === 'card') {
-//         directory.handleInteraction();
-//     }
-// });
+const directory = new Directory();
+directory.initialize();
+
+document.getElementById('gallery').addEventListener('click', (e) => {
+  console.log(e.target.parentElement);
+});
