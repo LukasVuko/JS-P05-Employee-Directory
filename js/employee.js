@@ -17,9 +17,9 @@ class Employee {
     this.modalDisplay = false;
   }
 
-  addCardToDocument(index) {
+  addCardToDocument() {
     const HTML = `
-        <div class="card" id=${index}>
+        <div class="card" id=>
             <div class="card-img-container">
                 <img class="card-img" src="${this.img}" alt="profile picture">
             </div>
@@ -50,5 +50,17 @@ class Employee {
             </div>
             `;
     document.getElementsByClassName('modal')[0].innerHTML = HTML;
+
+    this.showModal();
+
+    document.getElementById('modal-close-btn').addEventListener('click', () => {
+      document.getElementsByClassName('modal-container')[0].hidden = true;
+    });
+  }
+
+  showModal() {
+    document
+      .getElementsByClassName('modal-container')[0]
+      .removeAttribute('hidden');
   }
 }

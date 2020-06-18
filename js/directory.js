@@ -7,11 +7,21 @@ class Directory {
 
   async initialize() {
     const users = await fetchUsers(this.endPoint);
-    const employeeArray = await users.results.map((employee) =>
+    this.employeeList = await users.results.map((employee) =>
       this.createAndReturnEmployeeObject(employee)
     );
-    this.employeeList = employeeArray;
-    this.employeeList.forEach((employee, i) => employee.addCardToDocument(i));
+
+    this.employeeList.forEach((employee) => {
+      employee.addCardToDocument();
+    });
+
+    const cards = document.getElementsByClassName('card');
+    Array.from(cards).forEach((card, index) => {
+      card.addEventListener('click', () => {
+        this.employeeList[index].addEmployeeInsideModal();
+      });
+    });
+
     // Create and add search HTML.
   }
 
