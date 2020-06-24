@@ -3,12 +3,13 @@ class Directory {
     this.endPoint = 'https://randomuser.me/api/?results=12&nat=US';
     this.maxNumberOfEmployees = 12;
     this.employeeList = [];
+    this.currentEmployee;
   }
 
   async initialize() {
     const users = await fetchUsers(this.endPoint);
-    this.employeeList = await users.results.map((employee) =>
-      this.createAndReturnEmployeeObject(employee)
+    this.employeeList = await users.results.map((employee, index) =>
+      this.createAndReturnEmployeeObject(employee, index)
     );
 
     this.employeeList.forEach((employee) => {
@@ -21,11 +22,9 @@ class Directory {
         this.employeeList[index].addEmployeeInsideModal();
       });
     });
-
-    // Create and add search HTML.
   }
 
-  createAndReturnEmployeeObject(employee) {
+  createAndReturnEmployeeObject(employee, index) {
     return new Employee(
       employee.name.first,
       employee.name.last,
@@ -34,7 +33,8 @@ class Directory {
       employee.location.city,
       employee.cell,
       employee.location,
-      employee.dob.date.substring(0, 10)
+      employee.dob.date.substring(0, 10),
+      index
     );
   }
 }

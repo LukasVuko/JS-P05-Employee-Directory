@@ -1,5 +1,15 @@
 class Employee {
-  constructor(firstName, lastName, img, email, city, phone, address, birthday) {
+  constructor(
+    firstName,
+    lastName,
+    img,
+    email,
+    city,
+    phone,
+    address,
+    birthday,
+    id
+  ) {
     this.firstName = firstName;
     this.lastName = lastName;
     this.img = img;
@@ -15,11 +25,12 @@ class Employee {
     this.birth = birthday;
     this.cardDisplay = true;
     this.modalDisplay = false;
+    this.id = id;
   }
 
   addCardToDocument() {
     const HTML = `
-        <div class="card" id=>
+        <div class="card" >
             <div class="card-img-container">
                 <img class="card-img" src="${this.img}" alt="profile picture">
             </div>
@@ -52,15 +63,27 @@ class Employee {
     document.getElementsByClassName('modal')[0].innerHTML = HTML;
 
     this.showModal();
-
-    document.getElementById('modal-close-btn').addEventListener('click', () => {
-      document.getElementsByClassName('modal-container')[0].hidden = true;
-    });
+    this.addExitFunctionToModal();
+    directory.currentEmployee = this.id;
   }
 
   showModal() {
     document
       .getElementsByClassName('modal-container')[0]
       .removeAttribute('hidden');
+  }
+
+  addExitFunctionToModal() {
+    document.getElementById('modal-close-btn').addEventListener('click', () => {
+      document.getElementsByClassName('modal-container')[0].hidden = true;
+    });
+  }
+
+  hideCard(index) {
+    document.getElementsByClassName('card')[index].style.display = 'none';
+  }
+
+  showCard(index) {
+    document.getElementsByClassName('card')[index].style.display = '';
   }
 }
