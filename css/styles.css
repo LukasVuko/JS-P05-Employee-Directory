@@ -249,16 +249,14 @@ header h1 {
 
 @media (min-width: 1024px) {
   .card:hover {
-    background: rgba(255, 255, 255, 1);
-    border: 1px solid rgba(50, 50, 50, 0.9);
+    background: #f9d55c;
   }
 
   .card:hover .card-text {
-    color: rgba(25, 25, 25, 1);
+    color: #173f5f;
   }
 
   .btn:hover {
-    background: rgba(255, 255, 255, 1);
-    color: rgba(25, 25, 25, 1);
+    background: rgba(25, 25, 25, 1);
   }
 }
