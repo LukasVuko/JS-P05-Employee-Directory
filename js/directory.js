@@ -7,15 +7,16 @@ class Directory {
   }
 
   async initialize() {
+    // Create employee objects from fetched data and park it inside employeeList array
     const users = await fetchUsers(this.endPoint);
     this.employeeList = await users.results.map((employee, index) =>
       this.createAndReturnEmployeeObject(employee, index)
     );
-
+    // Add employees to the document
     this.employeeList.forEach((employee) => {
       employee.addCardToDocument();
     });
-
+    // Add event listeners to cards
     const cards = document.getElementsByClassName('card');
     Array.from(cards).forEach((card, index) => {
       card.addEventListener('click', () => {
@@ -28,7 +29,7 @@ class Directory {
     return new Employee(
       employee.name.first,
       employee.name.last,
-      employee.picture.medium,
+      employee.picture.large,
       employee.email,
       employee.location.city,
       employee.cell,
