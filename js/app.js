@@ -6,6 +6,7 @@ const fetchUsers = async (endPoint) => {
 const directory = new Directory();
 directory.initialize();
 
+// Search functionality
 document.getElementById('search-input').addEventListener('keyup', (e) => {
   const searchString = e.target.value;
   directory.employeeList.forEach((employee, index) => {
@@ -20,6 +21,7 @@ document.getElementById('search-input').addEventListener('keyup', (e) => {
   });
 });
 
+// Modal next and previous functionality
 document
   .getElementsByClassName('modal-btn-container')[0]
   .addEventListener('click', (e) => {
